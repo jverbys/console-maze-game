@@ -199,10 +199,8 @@ void Game::nextLevel(Player& _player)
 
     this->resetMap();
 
-    this->setMap();
-
     this->computeNewPos();
-    _player.setNewPos(this->randPos);
+    _player.setNewMapPos(this->randPos);
 
     this->addExit();
 
@@ -215,4 +213,6 @@ void Game::resetMap()
 {
     this->map.clear();
     system("cls");
+
+    this->setMap();
 }

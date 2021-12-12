@@ -10,16 +10,14 @@ class Player : public Molecule
 public:
 	Player(int _x, int _y, char _rChar) : Molecule(_x, _y, _rChar)
 	{
-		this->newX = _x;
-		this->newY = _y;
+		this->newPos = { _x, _y };
 	};
 	void changePos(std::pair<int, int> _coords);
-	void setNewPos(std::pair<int, int> _coords);
+	void setNewMapPos(std::pair<int, int> _coords);
 	std::pair<int, int> getNewPos();
 
 private:
-	int newX;
-	int newY;
+	std::pair<int, int> newPos;
 };
 
 #endif // !_PLAYER_

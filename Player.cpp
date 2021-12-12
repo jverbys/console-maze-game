@@ -4,21 +4,19 @@
 
 void Player::changePos(std::pair<int, int> _coords)
 {
-	this->pos = { this->newX, this->newY };
+	this->pos = this->newPos;
 
-	this->newX = _coords.first;
-	this->newY = _coords.second;
+	this->newPos = _coords;
 }
 
-void Player::setNewPos(std::pair<int, int> _coords)
+void Player::setNewMapPos(std::pair<int, int> _coords)
 {
-	this->pos = { _coords.first, _coords.second };
+	this->pos = _coords;
 
-	this->newX = _coords.first;
-	this->newY = _coords.second;
+	this->newPos = _coords;
 }
 
 std::pair<int, int> Player::getNewPos()
 {
-	return { this->newX, this->newY };
+	return this->newPos;
 }
