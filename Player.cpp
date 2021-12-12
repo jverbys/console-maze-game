@@ -4,8 +4,7 @@
 
 void Player::changePos(std::pair<int, int> _coords)
 {
-	this->x = this->newX;
-	this->y = this->newY;
+	this->pos = { this->newX, this->newY };
 
 	this->newX = _coords.first;
 	this->newY = _coords.second;
@@ -13,8 +12,7 @@ void Player::changePos(std::pair<int, int> _coords)
 
 void Player::setNewPos(std::pair<int, int> _coords)
 {
-	this->x = _coords.first;
-	this->y = _coords.second;
+	this->pos = { _coords.first, _coords.second };
 
 	this->newX = _coords.first;
 	this->newY = _coords.second;

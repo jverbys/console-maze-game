@@ -6,8 +6,7 @@
 class Molecule
 {
 protected:
-	int x;
-	int y;
+	std::pair<int, int> pos;
 	char renderChar;
 
 public:

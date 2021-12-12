@@ -4,8 +4,7 @@
 
 Molecule::Molecule(int _x, int _y, char _rChar)
 {
-	this->x = _x;
-	this->y = _y;
+	this->pos = {_x, _y};
 	this->renderChar = _rChar;
 }
 
@@ -16,5 +15,5 @@ char Molecule::getRenderChar()
 
 std::pair<int, int> Molecule::getPos()
 {
-	return { this->x, this->y };
+	return this->pos;
 }
