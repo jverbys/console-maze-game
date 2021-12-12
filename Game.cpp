@@ -41,7 +41,7 @@ void Game::setMap()
     {
         for (int y = 0; y < this->mazeHeight; y++)
         {
-            row.push_back(maze.map[x][y]);
+            row.push_back(maze.getPosState(x, y));
         }
         this->map.push_back(row);
         row.clear();
@@ -88,58 +88,37 @@ void Game::computeNewPos()
 void Game::getInput(Player &_player)
 {
     Sleep(75);
+
+    std::pair<int, int> newCoords;
+
     if (GetKeyState('W') & 0x8000/*Check if high-order bit is set (1 << 15)*/)
     {
-        std::pair<int, int> newCoords = { _player.getNewPos().first - 1, _player.getNewPos().second };
-
-        if (this->canMove(newCoords))
-        {
-            _player.changePos(newCoords);
-            this->rerenderMap(_player);
-            
-            if (this->canExit(newCoords))
-                this->nextLevel(_player);
-        }
+        newCoords = { _player.getNewPos().first - 1, _player.getNewPos().second };
     }
+
     if (GetKeyState('A') & 0x8000)
     {
-        std::pair<int, int> newCoords = { _player.getNewPos().first, _player.getNewPos().second - 1 };
-
-        if (this->canMove(newCoords))
-        {
-            _player.changePos(newCoords);
-            this->rerenderMap(_player);
-
-            if (this->canExit(newCoords))
-                this->nextLevel(_player);
-        }
+        newCoords = { _player.getNewPos().first, _player.getNewPos().second - 1 };
     }
+
     if (GetKeyState('S') & 0x8000)
     {
-        std::pair<int, int> newCoords = { _player.getNewPos().first + 1 , _player.getNewPos().second };
-
-        if (this->canMove(newCoords))
-        {
-            _player.changePos(newCoords);
-            this->rerenderMap(_player);
-
-            if (this->canExit(newCoords))
-                this->nextLevel(_player);
-        }
+        newCoords = { _player.getNewPos().first + 1 , _player.getNewPos().second };
     }
+
     if (GetKeyState('D') & 0x8000)
     {
-        std::pair<int, int> newCoords = { _player.getNewPos().first , _player.getNewPos().second + 1 };
-
-        if (this->canMove(newCoords))
-        {
-            _player.changePos(newCoords);
-            this->rerenderMap(_player);
-
-            if (this->canExit(newCoords))
-                this->nextLevel(_player);
-        }
+        newCoords = { _player.getNewPos().first , _player.getNewPos().second + 1 };
     }
+
+    if (this->canMove(newCoords))
+    {
+        _player.changePos(newCoords);
+        this->rerenderMap(_player);
+    }
+
+    if (this->canExit(newCoords))
+        this->nextLevel(_player);
 }
 
 bool Game::canMove(std::pair<int, int> _coords)

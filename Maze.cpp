@@ -89,3 +89,8 @@ void Maze::regenerate(int _width, int _height)
 
     this->generate(_width, _height);
 }
+
+int Maze::getPosState(int _x, int _y)
+{
+    return this->map[_x][_y];
+}
